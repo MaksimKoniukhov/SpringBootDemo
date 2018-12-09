@@ -7,12 +7,24 @@
 <body>
 <h3>Add Message</h3>
 
-<form method="post">
+<form method="post" action="/">
     <input type="text" name="text" placeholder="Text"/>
     <input type="text" name="tag" placeholder="Tag"/>
     <br>
     <br>
     <input type="submit" th:value="Save"/>
+    <input type="reset" th:value="Reset"/>
+</form>
+
+<hr>
+
+<h3>Filter</h3>
+
+<form method="post" action="filter">
+    <input type="text" name="tag" placeholder="Tag"/>
+    <br>
+    <br>
+    <input type="submit" th:value="Filter"/>
     <input type="reset" th:value="Reset"/>
 </form>
 
