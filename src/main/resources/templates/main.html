@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h3>Add Message</h3>
+
+<form method="post">
+    <input type="text" name="text" placeholder="Text"/>
+    <input type="text" name="tag" placeholder="Tag"/>
+    <br>
+    <br>
+    <input type="submit" th:value="Save"/>
+    <input type="reset" th:value="Reset"/>
+</form>
+
+<hr>
+
+<h3>Message List:</h3>
+<table>
+    <thead>
+    <tr>
+        <th> Id</th>
+        <th> Text</th>
+        <th> Tag</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="message : ${messages}">
+        <td><span th:text="${message.id}"> Id </span></td>
+        <td><span th:text="${message.text}"> Text </span></td>
+        <td><span th:text="${message.tag}"> Tag </span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
