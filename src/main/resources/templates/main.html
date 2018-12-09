@@ -5,9 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+<h2 th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]!</h2>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<hr>
+
 <h3>Add Message</h3>
 
-<form method="post" action="/">
+<form method="post" th:action="@{main}">
     <input type="text" name="text" placeholder="Text"/>
     <input type="text" name="tag" placeholder="Tag"/>
     <br>
@@ -20,7 +27,7 @@
 
 <h3>Filter</h3>
 
-<form method="post" action="filter">
+<form method="post" th:action="@{filter}">
     <input type="text" name="tag" placeholder="Tag"/>
     <br>
     <br>

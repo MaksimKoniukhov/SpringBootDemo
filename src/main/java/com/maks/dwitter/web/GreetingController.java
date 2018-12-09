@@ -1,4 +1,4 @@
-package com.maks.dwitter;
+package com.maks.dwitter.web;
 
 import com.maks.dwitter.model.Message;
 import com.maks.dwitter.repository.MessageRepository;
@@ -14,40 +14,34 @@ public class GreetingController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
-        model.addAttribute("name", name);
+    @GetMapping("/")
+    public String greeting(Model model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("main")
     public String main(Model model) {
         Iterable<Message> messages = messageRepository.findAll();
         model.addAttribute("messages", messages);
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("main")
     public String add(@RequestParam String text, @RequestParam String tag, Model model) {
         Message message = new Message(text, tag);
 
         messageRepository.save(message);
 
-        Iterable<Message> messages = messageRepository.findAll();
-        model.addAttribute("messages", messages);
-
-        return "main";
+        return "redirect:main";
     }
 
     @PostMapping("filter")
     public String filter(@RequestParam String tag, Model model) {
-        Iterable<Message> messages;
-        if (tag != null && !tag.isEmpty())
-            messages = messageRepository.findByTag(tag);
-        else
-            messages = messageRepository.findAll();
-
-        model.addAttribute("messages", messages);
-        return "main";
+        if (tag != null && !tag.isEmpty()) {
+            Iterable<Message> messages = messageRepository.findByTag(tag);
+            model.addAttribute("messages", messages);
+            return "main";
+        } else
+            return "redirect:main";
     }
 }
