@@ -1,4 +1,4 @@
-package com.maks.dwitter.web;
+package com.maks.dwitter.controller;
 
 import com.maks.dwitter.model.Message;
 import com.maks.dwitter.repository.MessageRepository;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private MessageRepository messageRepository;
 
     @GetMapping("/")
-    public String greeting(Model model) {
+    public String greeting() {
         return "greeting";
     }
 
