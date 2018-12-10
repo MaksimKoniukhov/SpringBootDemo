@@ -17,8 +17,6 @@
 <form method="post" th:action="@{main}">
     <input type="text" name="text" placeholder="Text"/>
     <input type="text" name="tag" placeholder="Tag"/>
-    <br>
-    <br>
     <input type="submit" th:value="Save"/>
     <input type="reset" th:value="Reset"/>
 </form>
@@ -29,8 +27,6 @@
 
 <form method="post" th:action="@{filter}">
     <input type="text" name="tag" placeholder="Tag"/>
-    <br>
-    <br>
     <input type="submit" th:value="Filter"/>
     <input type="reset" th:value="Reset"/>
 </form>
@@ -44,13 +40,15 @@
         <th> Id</th>
         <th> Text</th>
         <th> Tag</th>
+        <th> Author</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="message : ${messages}">
-        <td><span th:text="${message.id}"> Id </span></td>
+        <td><b th:text="${message.id}"> Id </b></td>
         <td><span th:text="${message.text}"> Text </span></td>
-        <td><span th:text="${message.tag}"> Tag </span></td>
+        <td><i th:text="${message.tag}"> Tag </i></td>
+        <td><span style="color: red" th:text="${message.author.getUsername()}"> Author </span></td>
     </tr>
     </tbody>
 </table>
